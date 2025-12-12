@@ -1,9 +1,9 @@
 use anchor_lang::prelude::*;
 
-declare_id!("58LgoYxZCeEGjSjFL3mwYEsmkCFLgn1a4jLy8QP3NiWd");
+declare_id!("CwLTTXYQL6dWsYu4CXJuzaATag2vaBDczQbgrgXJKBey");
 
 #[program]
-pub mod anchore_surfpool_example {
+pub mod anchor_surfpool_example {
     use super::*;
 
     pub fn initialize(ctx: Context<Initialize>) -> Result<()> {

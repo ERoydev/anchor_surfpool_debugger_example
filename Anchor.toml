@@ -6,7 +6,7 @@ resolution = true
 skip-lint = false
 
 [programs.localnet]
-anchore_surfpool_example = "58LgoYxZCeEGjSjFL3mwYEsmkCFLgn1a4jLy8QP3NiWd"
+anchor_surfpool_example = "CwLTTXYQL6dWsYu4CXJuzaATag2vaBDczQbgrgXJKBey"
 
 [registry]
 url = "https://api.apr.dev"

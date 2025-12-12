@@ -1,17 +1,16 @@
 import * as anchor from "@coral-xyz/anchor";
 import { Program } from "@coral-xyz/anchor";
-import { AnchoreSurfpoolExample } from "../target/types/anchore_surfpool_example";
+import { AnchorSurfpoolExample } from "../target/types/anchor_surfpool_example";
 
 // =========// Helper function to airdrop SOL to a given address
 async function airdrop(connection: any, address: any, amount = 10000000000) {
   await connection.confirmTransaction(await connection.requestAirdrop(address, amount), "confirmed");
 }
 
-
 describe("anchor_surfpool_example", () => {
   // Configure the client to use the local cluster.
   anchor.setProvider(anchor.AnchorProvider.env());
-  const program = anchor.workspace.anchoreSurfpoolExample as Program<AnchoreSurfpoolExample>;
+  const program = anchor.workspace.anchorSurfpoolExample as Program<AnchorSurfpoolExample>;
 
   it("Initializes PDA and sets value", async () => {
     // Generate a random keypair for the test user
@@ -22,7 +21,6 @@ describe("anchor_surfpool_example", () => {
       [Buffer.from("pda"), user.publicKey.toBuffer()],
       program.programId
     );
-
 
     let tx = await program.methods.initialize()
       .accounts({
