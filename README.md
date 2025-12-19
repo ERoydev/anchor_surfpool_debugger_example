@@ -25,7 +25,7 @@ It wil install the surfpool in ~/.cargo/bin/surfpool-fork and u can use with sur
 #### 1. Inside this example repo to start the surfpool execute, pass the `SBF_TRACE_DIR` ENV var to specify the output folder of the tracing
 
 ```bash
-SBF_TRACE_DIR=$PWD/target/sbf surfpool-fork start
+SBF_TRACE_DIR=$PWD/sbf_trace_dir surfpool-fork start
 ```
 
 ### 2. Start Debugging:
@@ -48,3 +48,29 @@ cargo build-sbf --debug --tools-version v1.51 --arch v1
 ```bash
 anchor test --skip-local-validator
 ```
+
+4. Generate the .lcov 
+- Make sure you have installed the `solana-coverage` crate globally. Follow this guide: https://github.com/LimeChain/anchor-coverage-dwarf/tree/rework
+
+```bash
+RUST_BACKTRACE=1 SRC_PATHS=$PWD/programs/anchor_surfpool_example/src SBF_PATHS=$PWD/target/deploy SBF_TRACE_DIR=sbf_trace_dir solana-coverage
+```
+
+5. Visualize the lcov
+
+```bash
+genhtml --output-directory coverage sbf_trace_dir/*.lcov --rc branch_coverage=1 && open coverage/index.html
+```
+
+
+## Notes
+
+1. In the `sbf_trace_dir` you need to have the following files before you generate the lcov's:
+   - `.insns`
+   - `.regs`
+   - `.exec.sha256` -> which is the sha of my .so file
+
+2. After you generate the lcovs you will have
+   - `branches.lcov`
+   - `<hash>.lcov`
+
