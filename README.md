@@ -22,14 +22,11 @@ It wil install the surfpool in ~/.cargo/bin/surfpool-fork and u can use with sur
 
 ### 2. Start Surfpool with debugging
 
-#### 1. Inside this example repo to start the surfpool execute
+#### 1. Inside this example repo to start the surfpool execute, pass the `SBF_TRACE_DIR` ENV var to specify the output folder of the tracing
 
 ```bash
-VM_DEBUG_PORT=6612 VM_DEBUG_EXEC_INFO_FILE=/tmp/gimlet_vm_info.txt surfpool-fork start
+SBF_TRACE_DIR=$PWD/target/sbf surfpool-fork start
 ```
-
-It will start the gdbstub on `6612` Port when you run the tests
-
 
 ### 2. Start Debugging:
 
@@ -50,24 +47,4 @@ cargo build-sbf --debug --tools-version v1.51 --arch v1
 3. Start the tests
 ```bash
 anchor test --skip-local-validator
-```
-
-### 3. Manual debugging
-
-#### Start the lldb
-
-```bash
-solana-lldb solana-lldb ./target/deploy/anchore_surfpool_example.debug
-```
-
-#### Connect to the TPC port of the gdbstub 
-
-```bash
-gdb-remote 127.0.0.1:6612
-```
-
-#### Set breakpoint 
-
-```lldb
-breakpoint set --file /Users/emilemilovroydev/Rust/projects/Solana/gimlet-debugger/anchor_surfpool_example/programs/anchor_surfpool_example/src/lib.rs --line 10
 ```
